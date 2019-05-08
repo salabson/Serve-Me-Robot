@@ -1,10 +1,28 @@
 <?xml version="1.0"?>
 <launch>
+   <arg name="x" default="0"/>
+   <arg name="y" default="0"/>
+   <arg name="z" default="0"/>
+   <arg name="roll" default="0"/>
+   <arg name="pitch" default="0"/>
+   <arg name="yaw" default="0"/>
+  <!-- send urdf to param server -->
+  <include file="$(find my_robot)/launch/robot_description.launch"/>
+  
   <arg name="world_file" default="$(find my_robot)/worlds/empty.world"/>
   <arg name="gui" default="true"/>
 
+  <!-- launch my world in gazebo -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(arg world_file)"/>
     <arg name="gui" value="$(arg gui)"/>
-  </include>
+    <arg name="use_sim_time" value="true"/>  
+    <arg name="debug" value="false"/>
+  </include> 
+  
+  <!-- spawn the robot in gazebo -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" respwan="false" output="screen" 
+   args="-param robot_description -urdf -model my_robot
+   -x $(arg x) -y $(arg y) -z $(arg z)
+   -R $(arg roll) -P $(pitch) -Y $(arg yaw)"/>
 </launch>
