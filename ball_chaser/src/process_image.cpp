@@ -1,4 +1,4 @@
-nclude "ros/ros.h"
+#include "ros/ros.h"
 #include "ball_chaser/DriveToTarget.h"
 #include <sensor_msgs/Image.h>
 
@@ -34,7 +34,6 @@ void process_image_callback(const sensor_msgs::Image img)
       if (img.data[i] == white_pixel)
       {
         ballPresent= true;
-        break;
       }
     }
     
