@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <launch>
-   <arg name="x" default="-3"/>
+   <arg name="x" default="-2.5"/>
    <arg name="y" default="-4"/>
    <arg name="z" default="0"/>
    <arg name="roll" default="0"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
 <launch>
   <node name="drive_bot" pkg="ball_chaser" type="drive_bot"/>
-  <node name="Process_image" pkg="ball_chaser" type="process_image"/>
+  <node name="Process_image" pkg="ball_chaser" type="process_image" output="screen"/>
 </launch>
