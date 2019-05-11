@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <launch>
-   <arg name="x" default="-2.5"/>
+   <arg name="x" default="3.0"/>
    <arg name="y" default="-4"/>
    <arg name="z" default="0"/>
    <arg name="roll" default="0"/>
@@ -9,7 +9,7 @@
   <!-- send urdf to param server -->
   <include file="$(find my_robot)/launch/robot_description.launch"/>
   
-  <arg name="world_file" default="$(find my_robot)/worlds/salab_world.world"/>
+  <arg name="world_file" default="$(find my_robot)/worlds/salab_world"/>
   <arg name="gui" default="true"/>
 
   <!-- launch my world in gazebo -->
