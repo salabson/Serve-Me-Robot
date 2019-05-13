@@ -19,19 +19,32 @@ void drive_robot(float lin_x, float ang_z)
     }
 }
 
-int count_color_pixel(int start, int end,int pixel_color, const sensor_msgs::Image img)
+void count_color_pixel(int &left, int &center, int &right, int pixel_color, const sensor_msgs::Image img)
 {
-    int num_of_white_pixel=0;
-    
-       for(int y=start; y<=img.height*end; y++)
-       {
-          if (img.data[y] == pixel_color)
-          {
-            num_of_white_pixel++;
-          } 
-       }
- 
-   return num_of_white_pixel;
+    int side = img.width/3;
+    int index;
+       for(int y=0; y<img.height; y++)
+     {
+          for(int x=0; x<img.width; x++)
+        {
+            index = x+y*img.width;
+            if(img.data[index] == pixel_color)
+            {
+               if(x < side){
+               left++;
+              } 
+              else if(x < side*2){
+              center++;
+              }
+              else
+              {
+               right++;
+              }
+           }
+        }
+                                                                              
+     }
+                            
 
 }
  
@@ -59,9 +72,7 @@ void process_image_callback(const sensor_msgs::Image img)
    if(ballPresent)
    {
     int side = img.step/3;
-     num_of_white_pixel_left =count_color_pixel(0,side,white_pixel,img);
-     num_of_white_pixel_center =count_color_pixel(side,side*2,white_pixel,img); 
-     num_of_white_pixel_right=count_color_pixel(side*2,side*3,white_pixel,img);
+     count_color_pixel(num_of_white_pixel_left,num_of_white_pixel_center,num_of_white_pixel_right,white_pixel,img);
      ROS_INFO("left: %d center: %d right: %d ", num_of_white_pixel_left, num_of_white_pixel_center, num_of_white_pixel_right);
      drive_robot(0.5,0.0);
    } else {drive_robot(0.0, 0.0 );}
