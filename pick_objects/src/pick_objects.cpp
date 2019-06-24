@@ -11,7 +11,6 @@ ros::init(argc, argv, "pick_objects");
 //1. start the server
 
 
-
 // call move_base action server and tell it to spin (start action server)
 MoveBaseClient ac("move_base", true);
 
