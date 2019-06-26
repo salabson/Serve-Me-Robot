@@ -10,6 +10,7 @@ int main(int argc, char** argv){
         //Create publishier object that publish marker
         ros::Publisher marker_pub = nh.advertise<visualization_msgs::Marker>("visualization_marker",1);
         ros::Rate r(1);
+                        
 
         // set the initial shape of the marker
         uint32_t shape = visualization_msgs::Marker::CUBE;
@@ -67,25 +68,10 @@ int main(int argc, char** argv){
 
 
                 marker_pub.publish(marker);
-
-                switch(shape){
-                        case visualization_msgs::Marker::CUBE:
-                             shape = visualization_msgs::Marker::SPHERE;
-                             break;
-                        case visualization_msgs::Marker::SPHERE:
-                             shape = visualization_msgs::Marker::ARROW;
-                             break;
-                        case visualization_msgs::Marker::ARROW:
-                             shape = visualization_msgs::Marker::CYLINDER;
-                             break;
-                        case visualization_msgs::Marker::CYLINDER:
-                             shape = visualization_msgs::Marker::CUBE;
-                             break;
-     
      
      
 
-                }
+                
                 r.sleep();
         }
 

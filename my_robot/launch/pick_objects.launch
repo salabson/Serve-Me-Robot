@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<launch>
+<node name="pick_objects" pkg="pick_objects" type="pick_objects" output="screen">
+<param name="picked" type="bool"  value="false"/>
+<param name="dropped" type="bool" value="false"/>
+</node>
+</launch>
+                                                                                                                                      
