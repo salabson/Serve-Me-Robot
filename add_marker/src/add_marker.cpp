@@ -10,15 +10,17 @@ int main(int argc, char** argv){
         //Create publishier object that publish marker
         ros::Publisher marker_pub = nh.advertise<visualization_msgs::Marker>("visualization_marker",1);
         ros::Rate r(1);
-                        
-
-        // set the initial shape of the marker
+  // set the initial shape of the marker
         uint32_t shape = visualization_msgs::Marker::CUBE;
+
+
+                                 
+
+       visualization_msgs::Marker marker;
 
         while( ros::ok()){
                 // Create marker msgs
-                visualization_msgs::Marker marker;
-
+               
                 // set up frame relative to which you want to marker pose be interpreted
                 marker.header.frame_id = "map";
                 marker.header.stamp = ros::Time::now();
@@ -64,15 +66,37 @@ int main(int argc, char** argv){
                        }
 
                        ROS_WARN_ONCE("Please create subscriber to the marker");
+                       sleep(1);
                }
 
 
                 marker_pub.publish(marker);
-     
+
+
+
+                ros::Duration(2.0).sleep();
+                marker.action = visualization_msgs::Marker::DELETE;
+                marker_pub.publish(marker);
+
+                               
+                
+                     
      
 
                 
                 r.sleep();
         }
+                marker.pose.position.x = -6.741549;
+                marker.action = visualization_msgs::Marker::ADD;
+                ros::Duration(2.0).sleep();
+
+
+
+
+
+                marker_pub.publish(marker);
+
+
+
 
 }
